@@ -1,0 +1,26 @@
+
+version: '3.1'
+services:
+  portainer:
+    image: portainer/portainer:latest
+    container_name: portainer
+    hostname: portainer
+    restart: always
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "$PWD/portainer/data:/data"
+      - "$PWD/portainer/public:/public"
+    environment:
+      TZ: Asia/Shanghai
+      LANG: en_US.UTF-8
+    ports:
+      - "9000:9000"
+  qinglong:
+    image: whyour/qinglong:latest
+    container_name: qinglong
+    hostname: qinglong
+    restart: always
+    ports:
+      - "5700:5700"
+    volumes:
+      - "$PWD/qinglong/data:/ql/data"
